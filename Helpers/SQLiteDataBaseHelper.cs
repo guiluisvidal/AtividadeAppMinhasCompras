@@ -19,7 +19,7 @@ namespace AtividadeAppMinhasCompras.Helpers
         }
         public Task<List<Produto>> UpdateProduto(Produto p) 
         { 
-            string sql = $"UPDATE Produto SET Descricao =? , Preco =?, Quantidade =? WHERE Id =?";
+            string sql = "UPDATE Produto SET Descricao =? , Preco =?, Quantidade =? WHERE Id =?";
             return _Conn.QueryAsync<Produto>(sql, p.Descricao, p.Preco, p.Quantidade, p.Id);
         }
         public Task<int> DeleteProduto(int id) 
@@ -30,9 +30,10 @@ namespace AtividadeAppMinhasCompras.Helpers
         {
            return _Conn.Table<Produto>().ToListAsync();
         }
-        public Task<List<Produto>> serch(string q) 
+        public Task<List<Produto>> Search(string q) 
         {
-            string sql = $"SELECT * Produto  WHERE Descricao LIKE '%" + q + "%',";
+            string sql = "SELECT * FROM Produto  WHERE Descricao LIKE '%" + q + "%'";
+
             return _Conn.QueryAsync<Produto>(sql);
         }
     }
